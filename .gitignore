@@ -1,2 +1,6 @@
 # ignore Finder information on Mac
 .DS_Store
+
+# ignore packages
+.gitignore
+node_modules
