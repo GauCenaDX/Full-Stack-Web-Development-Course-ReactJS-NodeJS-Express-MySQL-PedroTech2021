@@ -6,7 +6,7 @@ Date: Apr 02, 2021
 Started: Feb 24, 2022  
 End: TBU  
 
-This is a code along session from a YouTube video by PredroTech:
+This is a code along session from a YouTube playlist by PredroTech:
 https://www.youtube.com/watch?v=Hl7diL7SFw8&list=PLpPqplz6dKxUaZ630TY1BFIo5nP-_x-nL&index=1  
 
 ## Setting up backend:
@@ -28,10 +28,10 @@ Install *nodemon* package, this package will restart the server everytime we sav
 > $ npm install nodemon
 
 Add the *start* script to the scripts section of package.json.
-> "scripts": {
->    "test": "echo \"Error: no test specified\" && exit 1",
->    "start": "nodemon index.js"
->  },
+> "scripts": {  
+>    "test": "echo \"Error: no test specified\" && exit 1",  
+>    "start": "nodemon index.js"  
+>  },  
 
 Next, create a MySQL database for this tutorial. The database named we use is 'PedroTechFullStackDB'.
 
@@ -41,8 +41,8 @@ Install SQL ORM packages. These packages allows querying and manipulating data f
 
 Run sequilize init to setup folders in server folder.
 
-> $ sequelize init
-> or
+> $ sequelize init  
+> or  
 > $ npx sequlize init
 
 Remove 'migrations' and 'seeders' folders.
@@ -66,18 +66,18 @@ Remove 'import './index.css';' from index.js.
 
 Clean up App.css, only keep the following code:
 
-> .App {
->   text-align: center;
+> .App {  
+>   text-align: center;  
 > }
 
 Clean up App.js, the content should looks like below
 
 > import './App.css';
 > 
-> function App() {
->   return (
->     <div className="App"></div>
->   );
+> function App() {  
+>   return (  
+>     <div className="App"></div>  
+>   );  
 > }
 > 
 > export default App;
@@ -117,11 +117,13 @@ When running 'npm start' in client folder, we will see this error:
 
 To fix this, set the whitelist for CORS. So in the index.js in server folder.
 
-> -- Import cors package
+> -- Import cors package  
 > const cors = require('cors');
 > 
-> -- Use cors as the middleware
+> -- Use cors as the middleware  
 > app.use(cors());
+
+### Notes:
 
 For Switch from react-router-dom: In react-router-dom v6, "Switch" is replaced by "Routes".
 
@@ -130,5 +132,29 @@ For Switch from react-router-dom: In react-router-dom v6, "Switch" is replaced b
 For component prop in <Route>: In V6, you can't use the component prop anymore. It was replaced in favor of element.
 
 > <Route path='/' exact element={<Home />} />
+
+For *useHistory* from react-router-dom: In V6, useHistory is replaced by
+*useNavigate*. So:
+
+>  let history = useHistory();  
+>  history.push('/path');
+
+has become:
+
+>  let navigate = useNavigate();
+>  navigate('/path');
+
+If encounter the error:
+
+> TypeError: Router.use() requires middleware function but got a Object
+
+In any one of your js pages, if your are using express and doing
+
+> const router = express.Router();
+
+make sure you are not missing
+
+> module.exports = router;
+
 
 

@@ -16,5 +16,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  //-- Adding foreign key from Comments table to Posts table.
+  //-- Remember to drop the Comments table before we can re-create it.
+  Posts.associate = (models) => {
+    Posts.hasMany(models.Comments, {
+      onDelete: 'cascade'
+    });
+  };
+
   return Posts;
 };
