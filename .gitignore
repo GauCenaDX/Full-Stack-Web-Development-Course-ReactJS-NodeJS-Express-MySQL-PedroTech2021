@@ -2,5 +2,7 @@
 .DS_Store
 
 # ignore packages
-.gitignore
 node_modules
+
+# ignore swap file
+*.swp
