@@ -1,4 +1,4 @@
-# Full Stack Web Development Course [1] | ReactJS, NodeJS, Express, MySQL
+# Full Stack Web Development Course | ReactJS, NodeJS, Express, MySQL
 
 Author: PedroTech  
 Date: Apr 02, 2021  
