@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Axios from 'axios';
+import axios from 'axios';
 
 //- Notes:
 //- For <Field> element: The 'name' is very important, it should match the 
@@ -31,7 +31,7 @@ function CreatePost() {
   //- When submitting the form, Formik will return the data as an object.
   const onSubmit = (data) => {
     // console.log(data);
-    Axios.post('http://localhost:3001/posts', data).then((response) => {
+    axios.post('http://localhost:3001/posts', data).then((response) => {
       navigate('/');
     });
   };

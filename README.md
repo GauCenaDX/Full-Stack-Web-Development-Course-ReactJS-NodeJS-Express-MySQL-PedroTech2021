@@ -50,6 +50,10 @@ Remove 'migrations' and 'seeders' folders.
 App for Test APIs:  
 https://insomnia.rest/download
 
+Install *bcrypt* package for string hashing implementation. This will help with encryt user's password when implementing user's login page.
+
+> npm install bcrypt
+
 ## Setting up frontend
 
 In 'client' folder, create a React project
@@ -66,21 +70,25 @@ Remove 'import './index.css';' from index.js.
 
 Clean up App.css, only keep the following code:
 
-> .App {  
->   text-align: center;  
-> }
+```javascript
+.App {  
+  text-align: center;  
+}
+```
 
 Clean up App.js, the content should looks like below
 
-> import './App.css';
-> 
-> function App() {  
->   return (  
->     <div className="App"></div>  
->   );  
-> }
-> 
-> export default App;
+```javascript
+import './App.css';
+
+function App() {  
+  return (  
+    <div className="App"></div>  
+  );  
+}
+
+export default App;
+```
 
 
 ### Install Pakages
@@ -155,6 +163,4 @@ In any one of your js pages, if your are using express and doing
 make sure you are not missing
 
 > module.exports = router;
-
-
 
