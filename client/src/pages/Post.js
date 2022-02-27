@@ -23,11 +23,24 @@ function Post() {
   const addComment = () => {
     axios.post(
       'http://localhost:3001/comments',
-      {commentBody: newComment , PostId: id}
+      {
+        commentBody: newComment,
+        PostId: id
+      },
+      { //-- adding header to the post request
+        headers: {
+          accessToken: sessionStorage.getItem('accessToken')
+        }
+      }
     ).then((response) => {
-      const commentToAdd = { commentBody: newComment };
-      setListOfComments([...listOfComments, commentToAdd]);
-      setNewComment('');
+      if (response.data.error) {
+        console.log(response.data.error);
+        alert('You\'re not logged in');
+      } else {
+        const commentToAdd = { commentBody: newComment };
+        setListOfComments([...listOfComments, commentToAdd]);
+        setNewComment('');
+      }
     });
   };
 

@@ -28,10 +28,13 @@ Install *nodemon* package, this package will restart the server everytime we sav
 > $ npm install nodemon
 
 Add the *start* script to the scripts section of package.json.
-> "scripts": {  
->    "test": "echo \"Error: no test specified\" && exit 1",  
->    "start": "nodemon index.js"  
->  },  
+
+```json
+"scripts": {  
+   "test": "echo \"Error: no test specified\" && exit 1",  
+   "start": "nodemon index.js"  
+ },  
+```
 
 Next, create a MySQL database for this tutorial. The database named we use is 'PedroTechFullStackDB'.
 
@@ -53,6 +56,21 @@ https://insomnia.rest/download
 Install *bcrypt* package for string hashing implementation. This will help with encryt user's password when implementing user's login page.
 
 > npm install bcrypt
+
+Install *jsonwebtoken (jwt)* for stateless authentication mechanisms for users and providers, this means maintaining session is on the client-side instead of storing sessions on the server. This will help with implementing secured session after user logged in.
+
+> $ npm install jsonwebtoken
+
+To use jwt:
+
+```javascript
+jwt.sign(payload, secretOrPrivateKey, [options, callback])
+```
+
+### Notes:
+
+==Validation middleware:==  
+When we make a request (such as adding a comment to a post), we will also pass some sort of validation middleware to the request. This will check to see if the user has the correct jwt token stored in his session storage.
 
 ## Setting up frontend
 
@@ -125,32 +143,42 @@ When running 'npm start' in client folder, we will see this error:
 
 To fix this, set the whitelist for CORS. So in the index.js in server folder.
 
-> -- Import cors package  
-> const cors = require('cors');
-> 
-> -- Use cors as the middleware  
-> app.use(cors());
+```javascript
+-- Import cors package  
+const cors = require('cors');
+
+-- Use cors as the middleware  
+app.use(cors());
+```
 
 ### Notes:
 
 For Switch from react-router-dom: In react-router-dom v6, "Switch" is replaced by "Routes".
 
-> import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+```javascript
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+```
 
 For component prop in <Route>: In V6, you can't use the component prop anymore. It was replaced in favor of element.
-
-> <Route path='/' exact element={<Home />} />
+ 
+```javascript
+<Route path='/' exact element={<Home />} />
+```
 
 For *useHistory* from react-router-dom: In V6, useHistory is replaced by
 *useNavigate*. So:
 
->  let history = useHistory();  
->  history.push('/path');
+```javascript
+let history = useHistory();  
+history.push('/path');
+```
 
 has become:
 
->  let navigate = useNavigate();
->  navigate('/path');
+```javascript
+let navigate = useNavigate();
+navigate('/path');
+```
 
 If encounter the error:
 
@@ -158,9 +186,13 @@ If encounter the error:
 
 In any one of your js pages, if your are using express and doing
 
-> const router = express.Router();
+```javascript
+const router = express.Router();
+```
 
 make sure you are not missing
 
-> module.exports = router;
+```javascript
+module.exports = router;
+```
 

@@ -3,6 +3,9 @@ const router = express.Router();
 const { Users } = require('../models');
 const bcrypt = require('bcrypt');
 
+//- Use 'sign' from jsonwebokent to generate token
+const { sign } = require('jsonwebtoken');
+
 //- For USER REGISTRATION
 //- We want a post request to insert information into Users table
 //-   a.k.a doing registration.
@@ -35,7 +38,12 @@ router.post('/login', async (req, res) => {
       if (!match) {
         res.json({ error: 'Wrong Username and Password Combination.' });
       } else {
-        res.json('YOU LOGGED IN!!!');
+        //-- Create token: pass in the data that needs to be secured.
+        //-- Syntax: jwt.sign(payload, secretOrPrivateKey, [options, callback])
+        const accessToken = sign({username: user.username}, "importantsecret");
+
+        //-- Return the access token for frontend use
+        res.json(accessToken);
       }
     });
   }
