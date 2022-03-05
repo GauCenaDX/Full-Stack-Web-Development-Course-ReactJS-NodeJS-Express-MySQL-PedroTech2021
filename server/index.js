@@ -25,6 +25,6 @@ db.sequelize.sync().then(() => {
   //-- Note that the port number should be different than the port number for
   //--   our frontend (React)
   app.listen(3001, () => {
-    console.log('Server running on port');
+    console.log('Server running on port 3001');
   });
 });

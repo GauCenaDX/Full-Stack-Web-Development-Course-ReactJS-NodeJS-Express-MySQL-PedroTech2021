@@ -3,7 +3,7 @@ const router = express.Router();
 const { Users } = require('../models');
 const bcrypt = require('bcrypt');
 
-//- Use 'sign' from jsonwebokent to generate token
+//- Use 'sign' from jsonwebtoken to generate token
 const { sign } = require('jsonwebtoken');
 
 //- For USER REGISTRATION
@@ -11,7 +11,7 @@ const { sign } = require('jsonwebtoken');
 //-   a.k.a doing registration.
 router.post('/', async (req, res) => {
   const { username, password } = req.body;
-  bcrypt.hash(password, 10).then((hash) => {  //-- hash string length is 10
+  bcrypt.hash(password, 10).then((hash) => {  //-- how much time for scramble the hash string
     Users.create({
       username: username,
       password: hash

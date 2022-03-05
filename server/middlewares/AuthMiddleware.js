@@ -16,7 +16,7 @@ const validateToken = (req, res, next) => {
   //-- if user are not logged in (no access token found),
   //--   send back an error object
   if (!accessToken) {
-    console.log(accessToken);
+    // console.log(accessToken);
     return res.json({ error: 'User not logged in!' });
   }
 

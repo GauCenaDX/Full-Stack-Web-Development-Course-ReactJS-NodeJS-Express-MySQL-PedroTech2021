@@ -69,7 +69,7 @@ jwt.sign(payload, secretOrPrivateKey, [options, callback])
 
 ### Notes:
 
-==Validation middleware:==  
+==Validation middleware==  
 When we make a request (such as adding a comment to a post), we will also pass some sort of validation middleware to the request. This will check to see if the user has the correct jwt token stored in his session storage.
 
 ## Setting up frontend
