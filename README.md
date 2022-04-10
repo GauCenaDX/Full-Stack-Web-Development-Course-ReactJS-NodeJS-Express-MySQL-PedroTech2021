@@ -196,3 +196,42 @@ make sure you are not missing
 module.exports = router;
 ```
 
+## 09 JWT Authentication
+
+1. Install jsonwebtoken to generate token
+    > npm install jsonwebtoken
+2. Create an Access Token using 'sign' function from jsonwebtoken
+3. Create a Middleware to validate token being sent from server side
+3. Apply the Token Validate middleware to all api in backend that require user to sign in
+    - server/routes/Comments.js
+4. In frontend, add the Access Token in Session Storage to the Header for ajax requests that require user to sign in
+    - client/src/pages/Post.js  ->  addComment
+5. In addComment in client/src/pages/Post.js, check for error being returned from backend
+6. Navigate users to Home page after they successfully logged in
+
+## 10 Auth in the Frontend
+
+We want to add the username to the comment:
+
+1. Drop/Delete the Comments table in the database
+2. In backend, add 'username' column to the Comments model. Then, we restart the server to recreate the table.
+3. Extract the username info from validateToken function in AuthMiddleware.js
+4. Update the post('/') api in server/routes/Comments.js
+5. In client/src/pages/Post.js, update the comment display to include the username
+
+We want to remove the Login and Registration parts in nav bar when users logged in, and we want to do frontend authentication correctly
+
+
+1. Store the token in local storage instead of session storage.
+    - If we use session storage, all information will be lost when we close the browser tab.
+    - client/src/pages/Login.js
+    - client/src/pages/Post.js
+2. Hide Login and Registration parts in nav bar (client/src/App.js)
+3. Create a Context variable to store information about user including whether the user is authenticated or not.
+    - Create client/src/helpers/AuthContext.js
+    - Provide AuthContext for all components in App.js
+    - In App.js create our Authentication State using useState from React
+    - In Login.js, set the authentication state to true after user successfully logged in
+    - In App.js, use useEffect to check and ensure the authentication state is set correctly when the page reload.
+    - Create a new end point api to validate user's token. This will prevent fake token being injected into the browser. In server/routes/Users.js, create a new end point get('/auth')
+

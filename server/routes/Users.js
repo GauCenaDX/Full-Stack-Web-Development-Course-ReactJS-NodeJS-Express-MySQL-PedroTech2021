@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Users } = require('../models');
 const bcrypt = require('bcrypt');
+const { validateToken } = require('../middlewares/AuthMiddleware');
 
 //- Use 'sign' from jsonwebtoken to generate token
 const { sign } = require('jsonwebtoken');
@@ -47,6 +48,11 @@ router.post('/login', async (req, res) => {
       }
     });
   }
+});
+
+router.get('/auth', validateToken, (req, res) => {
+  //-- if the token is valid then just return the user object
+  res.json(req.user);
 });
 
 module.exports = router;

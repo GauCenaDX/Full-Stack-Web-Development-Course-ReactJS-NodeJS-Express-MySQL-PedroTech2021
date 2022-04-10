@@ -29,7 +29,7 @@ function Post() {
       },
       { //-- adding header to the post request
         headers: {
-          accessToken: sessionStorage.getItem('accessToken')
+          accessToken: localStorage.getItem('accessToken')
         }
       }
     ).then((response) => {
@@ -37,7 +37,10 @@ function Post() {
         console.log(response.data.error);
         alert('You\'re not logged in');
       } else {
-        const commentToAdd = { commentBody: newComment };
+        const commentToAdd = {
+          commentBody: newComment,
+          username: response.data.username
+        };
         setListOfComments([...listOfComments, commentToAdd]);
         setNewComment('');
       }
@@ -66,7 +69,12 @@ function Post() {
         </div>
         <div className='listOfComments'>
           {listOfComments.map((comment, key) => {
-            return <div key={key} className='comment'>{comment.commentBody}</div>
+            return (
+              <div key={key} className='comment'>
+                {comment.commentBody}
+                <label> -- Username: {comment.username} -- </label>
+              </div>
+            );
           })}
         </div>
       </div>

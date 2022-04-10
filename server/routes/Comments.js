@@ -11,6 +11,9 @@ router.get('/:postId', async (req, res) => {
 
 router.post('/', validateToken, async (req, res) => {
   const comment = req.body;
+  //-- Access username value being extracted in middleware layer
+  const username = req.user.username;
+  comment.username = username;
   await Comments.create(comment);
   res.json(comment);
 });
