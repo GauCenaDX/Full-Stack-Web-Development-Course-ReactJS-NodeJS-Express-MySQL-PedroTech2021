@@ -235,3 +235,17 @@ We want to remove the Login and Registration parts in nav bar when users logged 
     - In App.js, use useEffect to check and ensure the authentication state is set correctly when the page reload.
     - Create a new end point api to validate user's token. This will prevent fake token being injected into the browser. In server/routes/Users.js, create a new end point get('/auth')
 
+## 11 Logging Out
+
+1. Add Log Out option in client/src/App.js
+2. Show username on the nav bar when users logged in
+    - update authState to an object that keeps track of username, user id and user status (logged in or not)
+    - check and update authState value of all requests and routes
+3. Give option to delete comment
+    - Create a Delete route in server/routes/Comments.js
+    - In client/src/pages/Post.js
+      - Add delete button to comments that a user can delete
+      - Create a Delete request to delete a comment
+    
+
+

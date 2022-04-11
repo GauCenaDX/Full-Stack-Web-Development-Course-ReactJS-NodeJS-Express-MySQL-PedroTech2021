@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
         const accessToken = sign({username: user.username}, "importantsecret");
 
         //-- Return the access token for frontend use
-        res.json(accessToken);
+        res.json({ token: accessToken, username: user.username, id: user.id });
       }
     });
   }
